@@ -1,0 +1,3 @@
+# Exclude binary and .zip files
+main
+main.zip
