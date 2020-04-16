@@ -25,7 +25,7 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	} else if request.HTTPMethod == "GET" {
 
 		return events.APIGatewayProxyResponse{
-			Body:       "Hello, World!",
+			Body:       "{message: Hello, World!}",
 			StatusCode: 200,
 		}, nil
 
