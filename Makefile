@@ -12,6 +12,7 @@ usage:
 	@echo "   make all     			---- Remove go binary and .zip files"
 	@echo "   make build     		---- Build artifact"
 	@echo "   make zip     			---- zip up artifact for aws lambda usage"
+	@echo "   make vendor    		---- Update dependencies"
 
 .PHONY: all
 all: clean build zip
@@ -27,4 +28,9 @@ build:
 .PHONY: zip
 zip: build
 	zip main.zip main
+
+.PHONY: vendor
+vendor:
+	go mod tidy
+	go mod vendor
 
