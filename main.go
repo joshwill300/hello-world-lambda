@@ -10,15 +10,20 @@ import (
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
+type Request struct {
+	Username string  `json:"username,omitempty"`
+	Id       float64 `json:"id,omitempty"`
+}
+
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
 	if request.HTTPMethod == "POST" {
 
-		var jsonResponse map[string]interface{}
+		var jsonResponse Request
 		json.Unmarshal([]byte(request.Body), &jsonResponse)
 
 		return events.APIGatewayProxyResponse{
-			Body:       fmt.Sprintf("{message: Hello, %s! Your Id is %f}", jsonResponse["value"].(string), jsonResponse["id"].(float64)),
+			Body:       fmt.Sprintf("{message: Hello, %s! Your Id is %f}", jsonResponse.Username, jsonResponse.Id),
 			StatusCode: 200,
 		}, nil
 
